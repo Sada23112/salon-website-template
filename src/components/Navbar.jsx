@@ -1,5 +1,5 @@
 import { Menu, X, Phone } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { business } from '../config/business';
 
 export default function Navbar() {
@@ -14,7 +14,7 @@ export default function Navbar() {
   ];
 
   // Handle scroll shadow effect
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 0);
     };

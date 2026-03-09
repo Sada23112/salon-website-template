@@ -6,11 +6,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#f8f6f1',
-        foreground: '#1a1a1a',
-        accent: '#d4a574',
-        'accent-light': '#e8d4c0',
-        muted: '#6b6b6b',
+        background: 'var(--background, #f8f6f1)',
+        foreground: 'var(--foreground, #1a1a1a)',
+        accent: 'var(--accent, #d4a574)',
+        'accent-light': 'var(--accent-light, #e8d4c0)',
+        muted: 'var(--muted, #6b6b6b)',
       },
       fontFamily: {
         serif: ['Playfair Display', ...defaultTheme.fontFamily.serif],
