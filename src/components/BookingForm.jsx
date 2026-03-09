@@ -45,23 +45,36 @@ export default function BookingForm() {
     }
 
     try {
+      // Check if Supabase is properly configured
+      if (!supabase || !supabase.from) {
+        throw new Error('Supabase is not configured. Please contact support.');
+      }
+
+      // Create the appointment message combining date and time
+      const appointmentMessage = `${appointment_date} at ${appointment_time}`;
+
       const { error } = await supabase.from('appointments').insert([
         {
           name: name.trim(),
           phone: phone.trim(),
           service,
-          appointment_date,
-          appointment_time,
-          status: 'pending',
+          message: appointmentMessage,
+          // Note: appointment_date and appointment_time are combined into message field
+          // If your table has these separate columns, adjust accordingly
         },
       ]);
 
-      if (error) throw error;
+      if (error) {
+        console.error('[v0] Supabase error:', error);
+        throw error;
+      }
 
       setMessage({
         type: 'success',
-        text: 'Booking confirmed! We will contact you soon to confirm the appointment.',
+        text: 'Booking confirmed! We will contact you soon to confirm your appointment.',
       });
+      
+      // Reset form
       setFormData({
         name: '',
         phone: '',
@@ -70,13 +83,23 @@ export default function BookingForm() {
         appointment_time: '',
       });
 
+      // Auto-dismiss success message after 5 seconds
       setTimeout(() => setMessage({ type: '', text: '' }), 5000);
     } catch (error) {
+      console.error('[v0] Booking error:', error);
+      
+      let errorMessage = 'Failed to book appointment. Please try again or call us directly.';
+      
+      if (error?.message?.includes('not configured')) {
+        errorMessage = 'Booking system is not available. Please call us to book your appointment.';
+      } else if (error?.message) {
+        errorMessage = `Error: ${error.message}`;
+      }
+      
       setMessage({
         type: 'error',
-        text: 'Failed to book appointment. Please try again or call us directly.',
+        text: errorMessage,
       });
-      console.error('Booking error:', error);
     } finally {
       setLoading(false);
     }

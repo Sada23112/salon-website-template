@@ -10,10 +10,7 @@ import Footer from './components/Footer';
 import { business } from './config/business';
 
 function App() {
-  console.log('[v0] App component rendering');
-  
   useEffect(() => {
-    console.log('[v0] App useEffect running');
     document.title = `${business.businessName} - Premium Salon Services`;
 
     const metaDescription = document.querySelector('meta[name="description"]');
