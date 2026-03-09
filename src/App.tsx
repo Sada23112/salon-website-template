@@ -58,7 +58,7 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-white">
+    <div className="bg-background">
       <Navbar />
       <Hero />
       <Services />

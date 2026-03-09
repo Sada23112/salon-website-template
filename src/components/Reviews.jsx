@@ -1,4 +1,6 @@
 import { Star } from 'lucide-react';
+import { motion } from 'framer-motion';
+import AnimatedSection from './AnimatedSection';
 
 export default function Reviews() {
   const reviews = [
@@ -22,41 +24,62 @@ export default function Reviews() {
     },
   ];
 
+  const reviewVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (index) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        delay: index * 0.1,
+        ease: 'easeOut',
+      },
+    }),
+  };
+
   return (
-    <section className="py-16 sm:py-24 bg-white">
+    <section className="py-20 sm:py-32 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-            What Our Clients Say
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Real testimonials from our happy customers
-          </p>
-        </div>
+        <AnimatedSection>
+          <div className="text-center mb-20">
+            <p className="text-accent text-sm font-medium tracking-widest uppercase mb-4">Client Testimonials</p>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
+              Trusted by Our Clients
+            </h2>
+            <p className="text-lg text-muted max-w-2xl mx-auto leading-relaxed">
+              Real experiences from our happy customers
+            </p>
+          </div>
+        </AnimatedSection>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {reviews.map((review, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-gray-50 rounded-xl shadow-md hover:shadow-lg transition-shadow p-8 border-l-4 border-amber-700"
+              custom={index}
+              initial="hidden"
+              whileInView="visible"
+              variants={reviewVariants}
+              viewport={{ once: true, margin: '-50px' }}
+              className="bg-white rounded-sm shadow-md hover:shadow-lg transition-all duration-300 p-8 border-l-4 border-accent hover:border-accent-light group"
             >
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-1 mb-6">
                 {[...Array(review.rating)].map((_, i) => (
                   <Star
                     key={i}
-                    size={20}
-                    className="fill-amber-400 text-amber-400"
+                    size={18}
+                    className="fill-accent text-accent"
                   />
                 ))}
               </div>
-              <p className="text-gray-700 mb-6 leading-relaxed italic">
+              <p className="text-foreground mb-8 leading-relaxed italic text-sm">
                 "{review.text}"
               </p>
               <div>
-                <p className="font-semibold text-gray-900">{review.name}</p>
-                <p className="text-sm text-gray-600">{review.role}</p>
+                <p className="font-semibold text-foreground">{review.name}</p>
+                <p className="text-xs text-muted">{review.role}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

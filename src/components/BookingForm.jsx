@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { business } from '../config/business';
 import { supabase } from '../lib/supabaseClient';
+import AnimatedSection from './AnimatedSection';
 
 export default function BookingForm() {
   const [formData, setFormData] = useState({
@@ -81,21 +83,29 @@ export default function BookingForm() {
   };
 
   return (
-    <section id="booking" className="py-16 sm:py-24 bg-gray-50">
+    <section id="booking" className="py-20 sm:py-32 bg-accent-light/30">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-            Book Your Appointment
-          </h2>
-          <p className="text-xl text-gray-600">
-            Reserve your spot and let us pamper you
-          </p>
-        </div>
+        <AnimatedSection>
+          <div className="text-center mb-16">
+            <p className="text-accent text-sm font-medium tracking-widest uppercase mb-4">Reserve Your Spot</p>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
+              Book Your Appointment
+            </h2>
+            <p className="text-lg text-muted leading-relaxed">
+              Reserve your spot and let us create your perfect look
+            </p>
+          </div>
+        </AnimatedSection>
 
-        <div className="bg-white rounded-xl shadow-lg p-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          viewport={{ once: true, margin: '-50px' }}
+          className="bg-white rounded-sm shadow-lg p-10">
           {message.text && (
             <div
-              className={`mb-6 p-4 rounded-lg ${
+              className={`mb-6 p-4 rounded-sm ${
                 message.type === 'success'
                   ? 'bg-green-100 text-green-800 border border-green-300'
                   : 'bg-red-100 text-red-800 border border-red-300'
@@ -107,7 +117,7 @@ export default function BookingForm() {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">
+              <label className="block text-sm font-semibold text-foreground mb-3">
                 Full Name
               </label>
               <input
@@ -115,13 +125,13 @@ export default function BookingForm() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 focus:border-transparent"
+                className="w-full px-4 py-3 border border-accent-light rounded-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
                 placeholder="Enter your full name"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">
+              <label className="block text-sm font-semibold text-foreground mb-3">
                 Phone Number
               </label>
               <input
@@ -129,20 +139,20 @@ export default function BookingForm() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 focus:border-transparent"
+                className="w-full px-4 py-3 border border-accent-light rounded-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
                 placeholder="(555) 123-4567"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">
+              <label className="block text-sm font-semibold text-foreground mb-3">
                 Service
               </label>
               <select
                 name="service"
                 value={formData.service}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 focus:border-transparent bg-white"
+                className="w-full px-4 py-3 border border-accent-light rounded-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white text-foreground"
               >
                 {business.services.map((service) => (
                   <option key={service.name} value={service.name}>
@@ -154,7 +164,7 @@ export default function BookingForm() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                <label className="block text-sm font-semibold text-foreground mb-3">
                   Date
                 </label>
                 <input
@@ -162,13 +172,13 @@ export default function BookingForm() {
                   name="appointment_date"
                   value={formData.appointment_date}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-accent-light rounded-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
                   min={new Date().toISOString().split('T')[0]}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                <label className="block text-sm font-semibold text-foreground mb-3">
                   Time
                 </label>
                 <input
@@ -176,7 +186,7 @@ export default function BookingForm() {
                   name="appointment_time"
                   value={formData.appointment_time}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-700 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-accent-light rounded-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
                 />
               </div>
             </div>
@@ -184,20 +194,20 @@ export default function BookingForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full px-6 py-3 bg-amber-700 text-white rounded-lg hover:bg-amber-800 transition-colors font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full px-6 py-3 bg-accent text-white rounded-sm hover:bg-opacity-90 transition-all font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Booking...' : 'Confirm Booking'}
             </button>
           </form>
 
-          <div className="mt-8 pt-8 border-t border-gray-200">
-            <p className="text-gray-600 text-center mb-4">
-              Prefer to book directly?
+          <div className="mt-8 pt-8 border-t border-accent-light">
+            <p className="text-muted text-center mb-6 text-sm">
+              Prefer to reach out directly?
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href={`tel:${business.phone}`}
-                className="px-6 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-colors font-semibold text-center"
+                className="px-6 py-2.5 bg-foreground text-white rounded-sm hover:bg-opacity-90 transition-all font-medium text-center text-sm"
               >
                 Call Us
               </a>
@@ -205,13 +215,13 @@ export default function BookingForm() {
                 href={business.socialLinks.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold text-center"
+                className="px-6 py-2.5 bg-green-600 text-white rounded-sm hover:bg-green-700 transition-all font-medium text-center text-sm"
               >
-                WhatsApp Us
+                WhatsApp
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

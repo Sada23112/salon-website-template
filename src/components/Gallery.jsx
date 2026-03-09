@@ -1,31 +1,59 @@
 import { business } from '../config/business';
+import { motion } from 'framer-motion';
+import AnimatedSection from './AnimatedSection';
 
 export default function Gallery() {
-  return (
-    <section id="gallery" className="py-16 sm:py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-            Gallery
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Explore our collection of beautiful transformations and salon experiences
-          </p>
-        </div>
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: (index) => ({
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        delay: index * 0.08,
+        ease: 'easeOut',
+      },
+    }),
+  };
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  return (
+    <section id="gallery" className="py-20 sm:py-32 bg-background">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimatedSection>
+          <div className="text-center mb-20">
+            <p className="text-accent text-sm font-medium tracking-widest uppercase mb-4">Visual Stories</p>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
+              Gallery
+            </h2>
+            <p className="text-lg text-muted max-w-2xl mx-auto leading-relaxed">
+              Explore our collection of beautiful transformations and salon experiences
+            </p>
+          </div>
+        </AnimatedSection>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {business.galleryImages.map((image, index) => (
-            <div
+            <motion.div
               key={index}
-              className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow"
+              custom={index}
+              initial="hidden"
+              whileInView="visible"
+              variants={imageVariants}
+              viewport={{ once: true, margin: '-50px' }}
+              className="group relative overflow-hidden rounded-sm shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer aspect-square"
             >
               <img
                 src={image.url}
                 alt={image.alt}
-                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors"></div>
-            </div>
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-300"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <p className="text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm font-medium px-4">
+                  {image.alt}
+                </p>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
