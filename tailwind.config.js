@@ -6,15 +6,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: 'var(--background, #f8f6f1)',
-        foreground: 'var(--foreground, #1a1a1a)',
-        accent: 'var(--accent, #d4a574)',
-        'accent-light': 'var(--accent-light, #e8d4c0)',
-        muted: 'var(--muted, #6b6b6b)',
+        background: 'var(--background, #111111)',
+        foreground: 'var(--foreground, #F5E9E2)',
+        accent: 'var(--accent, #D4A373)',
+        'accent-secondary': 'var(--accent-secondary, #C97B63)',
+        muted: 'var(--muted, #8B8B8B)',
+        'dark-bg': 'var(--dark-bg, #1A1A1A)',
+        'light-bg': 'var(--light-bg, #FAF8F4)',
       },
       fontFamily: {
         serif: ['Playfair Display', ...defaultTheme.fontFamily.serif],
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
+      },
+      backdropBlur: {
+        xs: '2px',
       },
     },
   },

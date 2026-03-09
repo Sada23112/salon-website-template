@@ -42,11 +42,11 @@ export default function Reviews() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <div className="text-center mb-20">
-            <p className="text-accent text-sm font-medium tracking-widest uppercase mb-4">Client Testimonials</p>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
+            <p className="text-accent text-xs font-medium tracking-widest uppercase mb-4">Client Testimonials</p>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-8">
               Trusted by Our Clients
             </h2>
-            <p className="text-lg text-muted max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-foreground/70 max-w-2xl mx-auto leading-relaxed font-light">
               Real experiences from our happy customers
             </p>
           </div>
@@ -61,7 +61,7 @@ export default function Reviews() {
               whileInView="visible"
               variants={reviewVariants}
               viewport={{ once: true, margin: '-50px' }}
-              className="bg-white rounded-sm shadow-md hover:shadow-lg transition-all duration-300 p-8 border-l-4 border-accent hover:border-accent-light group"
+              className="bg-dark-bg border border-foreground/10 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 p-8 hover:translate-y-[-4px] group"
             >
               <div className="flex gap-1 mb-6">
                 {[...Array(review.rating)].map((_, i) => (

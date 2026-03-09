@@ -106,15 +106,15 @@ export default function BookingForm() {
   };
 
   return (
-    <section id="booking" className="py-20 sm:py-32 bg-accent-light/30">
+    <section id="booking" className="py-20 sm:py-32 bg-background">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <div className="text-center mb-16">
-            <p className="text-accent text-sm font-medium tracking-widest uppercase mb-4">Reserve Your Spot</p>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
+            <p className="text-accent text-xs font-medium tracking-widest uppercase mb-4">Reserve Your Spot</p>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-8">
               Book Your Appointment
             </h2>
-            <p className="text-lg text-muted leading-relaxed">
+            <p className="text-lg text-foreground/70 leading-relaxed font-light">
               Reserve your spot and let us create your perfect look
             </p>
           </div>
@@ -125,7 +125,7 @@ export default function BookingForm() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
           viewport={{ once: true, margin: '-50px' }}
-          className="bg-white rounded-sm shadow-lg p-10">
+          className="bg-dark-bg border border-foreground/10 rounded-lg shadow-lg p-10">
           {message.text && (
             <div
               className={`mb-6 p-4 rounded-sm ${
@@ -148,7 +148,7 @@ export default function BookingForm() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-accent-light rounded-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-foreground/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-dark-bg text-foreground placeholder:text-foreground/40"
                 placeholder="Enter your full name"
               />
             </div>
@@ -162,7 +162,7 @@ export default function BookingForm() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-accent-light rounded-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                className="w-full px-4 py-3 border border-foreground/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-dark-bg text-foreground placeholder:text-foreground/40"
                 placeholder="(555) 123-4567"
               />
             </div>
@@ -175,7 +175,7 @@ export default function BookingForm() {
                 name="service"
                 value={formData.service}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-accent-light rounded-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-white text-foreground"
+                className="w-full px-4 py-3 border border-foreground/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-dark-bg text-foreground"
               >
                 {business.services.map((service) => (
                   <option key={service.name} value={service.name}>
@@ -195,7 +195,7 @@ export default function BookingForm() {
                   name="appointment_date"
                   value={formData.appointment_date}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-accent-light rounded-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                  className="w-full px-4 py-3 border border-foreground/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-dark-bg text-foreground"
                   min={new Date().toISOString().split('T')[0]}
                 />
               </div>
@@ -209,7 +209,7 @@ export default function BookingForm() {
                   name="appointment_time"
                   value={formData.appointment_time}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-accent-light rounded-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-background"
+                  className="w-full px-4 py-3 border border-foreground/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent bg-dark-bg text-foreground"
                 />
               </div>
             </div>
@@ -217,20 +217,20 @@ export default function BookingForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full px-6 py-3 bg-accent text-white rounded-sm hover:bg-opacity-90 transition-all font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full px-6 py-3 bg-accent hover:bg-accent-secondary text-background rounded-lg transition-all font-semibold text-lg disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
             >
               {loading ? 'Booking...' : 'Confirm Booking'}
             </button>
           </form>
 
-          <div className="mt-8 pt-8 border-t border-accent-light">
-            <p className="text-muted text-center mb-6 text-sm">
+          <div className="mt-8 pt-8 border-t border-foreground/10">
+            <p className="text-foreground/70 text-center mb-6 text-sm">
               Prefer to reach out directly?
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href={`tel:${business.phone}`}
-                className="px-6 py-2.5 bg-foreground text-white rounded-sm hover:bg-opacity-90 transition-all font-medium text-center text-sm"
+                className="px-6 py-2.5 bg-foreground/10 text-foreground hover:bg-foreground/20 rounded-lg transition-all font-medium text-center text-sm border border-foreground/20"
               >
                 Call Us
               </a>
@@ -238,7 +238,7 @@ export default function BookingForm() {
                 href={business.socialLinks.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-2.5 bg-green-600 text-white rounded-sm hover:bg-green-700 transition-all font-medium text-center text-sm"
+                className="px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all font-medium text-center text-sm shadow-md"
               >
                 WhatsApp
               </a>

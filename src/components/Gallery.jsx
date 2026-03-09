@@ -21,17 +21,17 @@ export default function Gallery() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <div className="text-center mb-20">
-            <p className="text-accent text-sm font-medium tracking-widest uppercase mb-4">Visual Stories</p>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
+            <p className="text-accent text-xs font-medium tracking-widest uppercase mb-4">Visual Stories</p>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-8">
               Gallery
             </h2>
-            <p className="text-lg text-muted max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-foreground/70 max-w-2xl mx-auto leading-relaxed font-light">
               Explore our collection of beautiful transformations and salon experiences
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {business.galleryImages.map((image, index) => (
             <motion.div
               key={index}
@@ -40,14 +40,14 @@ export default function Gallery() {
               whileInView="visible"
               variants={imageVariants}
               viewport={{ once: true, margin: '-50px' }}
-              className="group relative overflow-hidden rounded-sm shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer aspect-square"
+              className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer aspect-square border border-foreground/5"
             >
               <img
                 src={image.url}
                 alt={image.alt}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-300"></div>
+              <div className="absolute inset-0 bg-background/0 group-hover:bg-background/30 transition-colors duration-300"></div>
               <div className="absolute inset-0 flex items-center justify-center">
                 <p className="text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm font-medium px-4">
                   {image.alt}

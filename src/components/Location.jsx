@@ -18,15 +18,15 @@ export default function Location() {
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-32 bg-accent-light/30">
+    <section id="contact" className="py-20 sm:py-32 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <div className="text-center mb-20">
-            <p className="text-accent text-sm font-medium tracking-widest uppercase mb-4">Get In Touch</p>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
+            <p className="text-accent text-xs font-medium tracking-widest uppercase mb-4">Get In Touch</p>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-8">
               Visit Our Salon
             </h2>
-            <p className="text-lg text-muted max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-foreground/70 max-w-2xl mx-auto leading-relaxed font-light">
               Conveniently located and always ready to welcome you
             </p>
           </div>
@@ -40,14 +40,14 @@ export default function Location() {
               whileInView="visible"
               variants={cardVariants}
               viewport={{ once: true, margin: '-50px' }}
-              className="bg-white rounded-sm shadow-md p-8 border-l-4 border-accent hover:shadow-lg transition-shadow group">
+              className="bg-dark-bg border border-foreground/10 rounded-lg shadow-lg p-8 hover:shadow-2xl transition-all group hover:translate-y-[-4px]">
               <div className="flex items-start gap-4">
                 <MapPin className="text-accent flex-shrink-0 mt-1 group-hover:scale-110 transition-transform" size={24} />
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-3">
                     Address
                   </h3>
-                  <p className="text-muted leading-relaxed text-sm">
+                  <p className="text-foreground/70 leading-relaxed text-sm">
                     {business.address}
                     <br />
                     {business.city}
@@ -58,7 +58,7 @@ export default function Location() {
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block mt-4 px-4 py-2 bg-accent text-white rounded-sm hover:bg-opacity-90 transition-all font-medium text-xs"
+                    className="inline-block mt-4 px-4 py-2 bg-accent hover:bg-accent-secondary text-background rounded-lg transition-all font-medium text-xs shadow-md"
                   >
                     Get Directions
                   </a>

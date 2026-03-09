@@ -18,15 +18,15 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="py-20 sm:py-32 bg-accent-light/30">
+    <section id="services" className="py-20 sm:py-32 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           <div className="text-center mb-20">
-            <p className="text-accent text-sm font-medium tracking-widest uppercase mb-4">Our Expertise</p>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
+            <p className="text-accent text-xs font-medium tracking-widest uppercase mb-4">Our Expertise</p>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-8">
               Premium Services
             </h2>
-            <p className="text-lg text-muted max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-foreground/70 max-w-2xl mx-auto leading-relaxed font-light">
               Expertly crafted salon services designed to enhance your natural beauty and confidence
             </p>
           </div>
@@ -41,8 +41,9 @@ export default function Services() {
               whileInView="visible"
               variants={cardVariants}
               viewport={{ once: true, margin: '-50px' }}
-              className="bg-white rounded-sm shadow-md hover:shadow-lg hover:translate-y-[-4px] transition-all duration-300 p-8 border-l-4 border-accent group"
+              className="bg-dark-bg border border-foreground/10 rounded-lg shadow-lg hover:shadow-2xl hover:translate-y-[-8px] transition-all duration-300 p-8 group overflow-hidden"
             >
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-accent-secondary"></div>
               <h3 className="text-2xl font-serif font-bold text-foreground mb-4 group-hover:text-accent transition-colors">
                 {service.name}
               </h3>
@@ -51,7 +52,7 @@ export default function Services() {
               </p>
               <a
                 href="#booking"
-                className="inline-flex items-center gap-2 px-6 py-2.5 bg-accent text-white rounded-sm hover:bg-opacity-90 transition-all font-medium text-sm group-hover:gap-3"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-accent hover:bg-accent-secondary text-background rounded-lg transition-all font-medium text-sm group-hover:gap-3 shadow-md hover:shadow-lg"
               >
                 Book Now
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

@@ -6,11 +6,13 @@
 
 @layer base {
   :root {
-    --background: #f8f6f1;
-    --foreground: #1a1a1a;
-    --accent: #d4a574;
-    --accent-light: #e8d4c0;
-    --muted: #6b6b6b;
+    --background: #111111;
+    --foreground: #F5E9E2;
+    --accent: #D4A373;
+    --accent-secondary: #C97B63;
+    --muted: #8B8B8B;
+    --dark-bg: #1A1A1A;
+    --light-bg: #FAF8F4;
   }
 
   html {
@@ -24,7 +26,7 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
-    @apply font-bold tracking-tight;
+    @apply font-bold tracking-tight text-foreground;
   }
 
   h1 {
@@ -36,6 +38,14 @@
   }
 
   h3 {
-    @apply text-3xl md:text-4xl;
+    @apply text-2xl md:text-3xl;
+  }
+
+  p {
+    @apply text-foreground/90 leading-relaxed;
+  }
+
+  a {
+    @apply text-accent hover:text-accent-secondary transition-colors;
   }
 }
